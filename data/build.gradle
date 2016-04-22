@@ -1,0 +1,71 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'me.tatarka:gradle-retrolambda:3.2.3'
+    }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'com.fernandocejas.frodo'
+apply plugin: 'me.tatarka.retrolambda'
+
+android {
+    compileSdkVersion baseCompileSdkVersion
+    buildToolsVersion baseBuildToolsVersion
+
+    defaultConfig {
+        minSdkVersion baseMinSdkVersion
+        targetSdkVersion baseTargetSdkVersion
+        versionCode baseVersionCode
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+}
+
+dependencies {
+    def dataDependencies = rootProject.ext.dataDependencies
+    def testDependencies = rootProject.ext.dataTestDependencies
+
+    // LOCAL BINARY DEPENDENCY
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    // TEST-ONLY DEPENDENCIES
+    testCompile testDependencies.junit
+    // MODULE DEPENDENCY
+    compile project(':domain')
+    // REMOTE BINARY DEPENDENCIES
+    apt dataDependencies.daggerCompiler
+    provided dataDependencies.javaxAnnotation
+    compile dataDependencies.gson
+    compile dataDependencies.rxJava
+    compile dataDependencies.rxAndroid
+    compile dataDependencies.androidAnnotations
+    // Use - Rest API support
+    compile dataDependencies.retrofit
+    compile dataDependencies.retrofitConverterGson
+    compile dataDependencies.retrofitRxJavaAdapter
+    compile dataDependencies.okHttp
+    // Use - Database support
+    compile dataDependencies.dbFlow
+    compile dataDependencies.dbFlowCore
+    // sql-cipher database encyrption (optional)
+    compile dataDependencies.dbFlowSQLCipher
+    apt dataDependencies.dbFlowProcessor
+    // Use - Dependency Injection support
+    compile dataDependencies.dagger
+    // DEVELOPMENT-ONLY DEPENDENCIES
+}

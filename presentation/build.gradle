@@ -1,0 +1,57 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'com.fernandocejas.frodo'
+apply plugin: 'me.tatarka.retrolambda'
+
+android {
+    compileSdkVersion baseCompileSdkVersion
+    buildToolsVersion baseBuildToolsVersion
+
+    defaultConfig {
+        applicationId basePackageName
+        minSdkVersion baseMinSdkVersion
+        targetSdkVersion baseTargetSdkVersion
+        versionCode baseVersionCode
+        versionName baseVersionName
+        testInstrumentationRunner baseTestInstrumentationRunner
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+}
+
+dependencies {
+    def presentationDependencies = rootProject.ext.presentationDependencies
+    def testDependencies = rootProject.ext.dataTestDependencies
+
+    // LOCAL BINARY DEPENDENCY
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    // TEST-ONLY DEPENDENCIES
+    testCompile testDependencies.junit
+    // MODULE DEPENDENCY
+    compile project(':domain')
+    compile project(':data')
+    // REMOTE BINARY DEPENDENCIES
+    apt presentationDependencies.daggerCompiler
+    compile presentationDependencies.dagger
+    compile presentationDependencies.butterKnife
+    compile presentationDependencies.supportRecyclerView
+    compile presentationDependencies.supportAppCompatV7
+    compile presentationDependencies.rxJava
+    compile presentationDependencies.rxAndroid
+    provided presentationDependencies.javaxAnnotation
+    // DEVELOPMENT-ONLY DEPENDENCIES
+    compile developmentDependencies.leakCanary
+
+}
