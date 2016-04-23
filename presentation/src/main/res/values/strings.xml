@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">Presentation</string>
+    <string name="app_name">XoverAuction</string>
 
     // Button text
     <string name="login">Login</string>
 
     // Website text
-    <string name="url">http://www.doea.com/</string>
+    <string name="url">http://www.xover.com/</string>
 
     // Title texts
     <string name="activity_title_user_list">Users List</string>
@@ -28,4 +28,12 @@
     <string name="exception_message_user_not_found">Cannot retrieve user data. Check your internet connection</string>
     <string name="activity_dashboard">Dashboard</string>
     <string name="activity_login">Login</string>
+
+    // Register User texts
+    <string name="tv_username">Username</string>
+    <string name="tv_password">Password</string>
+    <string name="username_hint">Tom</string>
+    <string name="email_hint">tom@xyz.com</string>
+    <string name="password_hint">QW3fx_tYitZ</string>
+    <string name="bt_submit">Submit</string>
 </resources>

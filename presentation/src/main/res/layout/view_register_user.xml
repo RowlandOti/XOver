@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_regcover"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/iv_cover_height"
+        android:background="@android:color/darker_gray" />
+
+    <TextView
+        android:id="@+id/et_fullname"
+        style="@style/AppTheme.TextViewHeader"
+        android:freezesText="true"
+        android:text="Register" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/AppTheme.TextViewTitle"
+            android:text="@string/tv_username" />
+
+        <EditText
+            android:id="@+id/et_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:ems="10"
+            android:freezesText="true"
+            android:hint="@string/username_hint"
+            android:inputType="textPersonName" />
+
+        <TextView
+            style="@style/AppTheme.TextViewTitle"
+            android:text="@string/view_text_email" />
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:ems="10"
+            android:freezesText="true"
+            android:hint="@string/email_hint"
+            android:inputType="textEmailAddress" />
+
+        <TextView
+            style="@style/AppTheme.TextViewTitle"
+            android:text="@string/tv_password" />
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:freezesText="true"
+            android:hint="@string/password_hint"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/bt_submit" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -2,7 +2,7 @@ ext {
 
     // Build Brand 
     baseAppName = 'Doea'
-    basePackageName = 'com.doea.app'
+    basePackageName = 'com.rowland.auction'
     baseVersionName = '1.0.0'
     baseVersionCode = 1
     baseBuildToolsVersion = '23.0.2'
