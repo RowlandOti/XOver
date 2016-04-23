@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.rowland.auction.presentation.ApplicationController;
 import com.rowland.auction.presentation.R;
 import com.rowland.auction.presentation.dashboardfeature.view.DashboardActivity;
-import com.rowland.auction.presentation.authfeature.view.activity.LoginActivity;
+import com.rowland.auction.presentation.authfeature.view.activity.AuthActivity;
 import com.rowland.auction.presentation.utility.PrefManager;
 
 /**
@@ -19,7 +19,7 @@ public class SplashActivity extends ABaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         if (!PrefManager.isAuthenticated()) {
-            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+            startActivity(new Intent(SplashActivity.this, AuthActivity.class));
         } else {
             ApplicationController.apiManager.setupEndpoint(PrefManager.getInstanceUrl());
             startActivity(new Intent(SplashActivity.this, DashboardActivity.class));

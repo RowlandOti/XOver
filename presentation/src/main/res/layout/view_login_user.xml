@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/img_regcover"
+        android:id="@+id/img_logcover"
         android:layout_width="match_parent"
         android:layout_height="@dimen/iv_cover_height"
         android:background="@android:color/darker_gray" />
@@ -14,7 +14,7 @@
         android:id="@+id/et_fullname"
         style="@style/AppTheme.TextViewHeader"
         android:freezesText="true"
-        android:text="@string/tv_register" />
+        android:text="@string/tv_login" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,20 +22,6 @@
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:orientation="vertical">
-
-        <TextView
-            style="@style/AppTheme.TextViewTitle"
-            android:text="@string/tv_username" />
-
-        <EditText
-            android:id="@+id/et_username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:ems="10"
-            android:freezesText="true"
-            android:hint="@string/username_hint"
-            android:inputType="textPersonName" />
 
         <TextView
             style="@style/AppTheme.TextViewTitle"
@@ -65,11 +51,11 @@
             android:inputType="textPassword" />
 
         <Button
-            android:id="@+id/bt_register"
+            android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/bt_register" />
+            android:text="@string/bt_login" />
     </LinearLayout>
 
 </LinearLayout>

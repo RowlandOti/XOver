@@ -18,21 +18,18 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link ABaseFragment} subclass.
  */
-public class RegisterUserFragment extends ABaseFragment {
+public class LoginUserFragment extends ABaseFragment {
 
-    private onRegisterFinishBtnClickListener registerFinishBtnClickListener;
-    private String username;
+    private onLoginFinishBtnClickListener loginFinishBtnClickListener;
     private String email;
     private String passWord;
 
-    public interface onRegisterFinishBtnClickListener {
-        void onRegisterFinishClicked(String username, String email, String passWord);
+    public interface onLoginFinishBtnClickListener {
+        void onLoginFinishClicked(String email, String passWord);
     }
 
-    @Bind(R.id.img_regcover)
-    ImageView imgRegcover;
-    @Bind(R.id.et_username)
-    EditText etUsername;
+    @Bind(R.id.img_logcover)
+    ImageView ivLogcover;
     @Bind(R.id.et_email)
     EditText etEmail;
     @Bind(R.id.et_password)
@@ -43,19 +40,17 @@ public class RegisterUserFragment extends ABaseFragment {
     RelativeLayout rlRetry;
     @Bind(R.id.bt_retry)
     Button btRetry;
-    @Bind(R.id.bt_register)
-    Button btRegister;
+    @Bind(R.id.bt_login)
+    Button btLogin;
 
-
-    public RegisterUserFragment() {
+    public LoginUserFragment() {
         setRetainInstance(true);
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        final View fragmentView = inflater.inflate(R.layout.fragment_register_user, container, false);
+        final View fragmentView = inflater.inflate(R.layout.fragment_login_user, container, false);
         ButterKnife.bind(this, fragmentView);
         return fragmentView;
     }
@@ -63,16 +58,15 @@ public class RegisterUserFragment extends ABaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        btRegister.setOnClickListener(new View.OnClickListener() {
+        btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!isValidEditTextData(etUsername, etEmail,etPassword)) {
+                if (!isValidEditTextData(etEmail,etPassword)) {
                     return;
                 }
-                username = etUsername.getText().toString().trim();
                 email = etEmail.getText().toString().trim();
                 passWord = etPassword.getText().toString().trim();
-                registerFinishBtnClickListener.onRegisterFinishClicked(username, email, passWord);
+                loginFinishBtnClickListener.onLoginFinishClicked(email, passWord);
             }
         });
     }

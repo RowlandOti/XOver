@@ -35,5 +35,10 @@
     <string name="username_hint">Tom</string>
     <string name="email_hint">tom@xyz.com</string>
     <string name="password_hint">QW3fx_tYitZ</string>
-    <string name="bt_submit">Submit</string>
+    <string name="bt_register">Register</string>
+    <string name="tv_register">Register</string>
+
+    // Login User texts
+    <string name="tv_login">Login</string>
+    <string name="bt_login">Login</string>
 </resources>
