@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">XoverAuction</string>
+    <string name="app_name">XOverAuction</string>
 
     // Button text
     <string name="login">Login</string>

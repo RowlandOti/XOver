@@ -1,9 +1,11 @@
 package com.rowland.auction.presentation.view.activity;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 
 import com.rowland.auction.presentation.ApplicationController;
 import com.rowland.auction.presentation.internal.di.components.ApplicationComponent;
@@ -15,45 +17,69 @@ import javax.inject.Inject;
 /**
  * Base {@link Activity} class for every Activity in this application.
  */
-public abstract class ABaseActivity extends Activity {
+public abstract class ABaseActivity extends AppCompatActivity {
 
-  @Inject
-  protected
-  Navigator navigator;
+    @Inject
+    protected
+    Navigator navigator;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    this.getApplicationComponent().inject(this);
-  }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.getApplicationComponent().inject(this);
+    }
 
-  /**
-   * Adds a {@link Fragment} to this activity's layout.
-   *
-   * @param containerViewId The container view to where add the fragment.
-   * @param fragment The fragment to be added.
-   */
-  protected void addFragment(int containerViewId, Fragment fragment) {
-    FragmentTransaction fragmentTransaction = this.getFragmentManager().beginTransaction();
-    fragmentTransaction.add(containerViewId, fragment);
-    fragmentTransaction.commit();
-  }
+    /**
+     * Adds a {@link Fragment} to this activity's layout.
+     *
+     * @param containerViewId The container view to where add the fragment.
+     * @param fragment        The fragment to be added.
+     */
+    protected void addFragment(int containerViewId, Fragment fragment) {
+        FragmentManager fm = this.getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.add(containerViewId, fragment);
+        transaction.commit();
+    }
 
-  /**
-   * Get the Main Application component for dependency injection.
-   *
-   * @return {@link ApplicationComponent}
-   */
-  protected ApplicationComponent getApplicationComponent() {
-    return ((ApplicationController)getApplication()).getAppComponent();
-  }
+    /**
+     * Adds a {@link Fragment} to this activity's layout.
+     *
+     * @param containerViewId The container view to where add the fragment.
+     * @param fragment        The fragment to be added.
+     * @param addToBackStack  The boolean on whether to add to backstack.
+     */
+    protected void replaceFragment(int containerViewId, Fragment fragment, boolean addToBackStack) {
+        // invalidateOptionsMenu();
+        String backStateName = fragment.getClass().getName();
+        FragmentManager fm = this.getSupportFragmentManager();
+        boolean fragmentPopped = fm.popBackStackImmediate(backStateName, 0);
 
-  /**
-   * Get an Activity module for dependency injection.
-   *
-   * @return {@link ActivityModule}
-   */
-  protected ActivityModule getActivityModule() {
-    return new ActivityModule(this);
-  }
+        if (!fragmentPopped && getSupportFragmentManager().findFragmentByTag(backStateName) == null) {
+            FragmentTransaction transaction = fm.beginTransaction();
+            transaction.replace(containerViewId, fragment, backStateName);
+            if (addToBackStack) {
+                transaction.addToBackStack(backStateName);
+            }
+            transaction.commit();
+        }
+    }
+
+    /**
+     * Get the Main Application component for dependency injection.
+     *
+     * @return {@link ApplicationComponent}
+     */
+    protected ApplicationComponent getApplicationComponent() {
+        return ((ApplicationController) getApplication()).getAppComponent();
+    }
+
+    /**
+     * Get an Activity module for dependency injection.
+     *
+     * @return {@link ActivityModule}
+     */
+    protected ActivityModule getActivityModule() {
+        return new ActivityModule(this);
+    }
 }
