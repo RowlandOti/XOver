@@ -3,6 +3,7 @@ package com.rowland.auction.presentation.api;
 import android.content.Context;
 
 import com.rowland.auction.data.authfeature.rest.service.IAuthService;
+import com.rowland.auction.data.bidfeature.rest.service.IBidService;
 import com.rowland.auction.data.rest.interceptor.ApiSessionRequestInterceptor;
 import com.rowland.auction.data.userfeature.rest.service.IUserService;
 import com.google.gson.GsonBuilder;
@@ -21,6 +22,7 @@ public abstract class ABaseApiManager {
 
     private IUserService mUserApi;
     private IAuthService mAuthApi;
+    private IBidService mBidApi;
     protected Context mContext;
 
     public ABaseApiManager() {
@@ -66,6 +68,10 @@ public abstract class ABaseApiManager {
 
     protected IUserService getUsersApi() {
         return mUserApi;
+    }
+
+    protected IBidService getBidsApi() {
+        return mBidApi;
     }
 
     public Context getContext() {

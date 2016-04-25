@@ -9,7 +9,7 @@ import com.rowland.auction.domain.interactor.UseCase;
 import com.rowland.auction.domain.userfeature.model.User;
 import com.rowland.auction.presentation.exception.ErrorMessageFactory;
 import com.rowland.auction.presentation.internal.di.PerActivity;
-import com.rowland.auction.presentation.mapper.UserModelDataMapper;
+import com.rowland.auction.presentation.userfeature.mapper.UserModelDataMapper;
 import com.rowland.auction.presentation.presenter.IPresenter;
 import com.rowland.auction.presentation.userfeature.model.UserModel;
 import com.rowland.auction.presentation.userfeature.view.IUserDetailsView;
