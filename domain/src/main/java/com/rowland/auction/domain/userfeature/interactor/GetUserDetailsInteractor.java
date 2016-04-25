@@ -3,9 +3,8 @@ package com.rowland.auction.domain.userfeature.interactor;
 import com.rowland.auction.domain.executor.IPostExecutionThread;
 import com.rowland.auction.domain.executor.IThreadExecutor;
 import com.rowland.auction.domain.userfeature.model.User;
-import com.rowland.auction.domain.repository.IRepository;
+import com.rowland.auction.domain.interactor.UseCase;
 import com.rowland.auction.domain.userfeature.repository.IUserRepository;
-
 
 import javax.inject.Inject;
 

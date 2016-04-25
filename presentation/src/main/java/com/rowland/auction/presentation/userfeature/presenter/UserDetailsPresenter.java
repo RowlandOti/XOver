@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import com.rowland.auction.domain.exception.DefaultErrorBundle;
 import com.rowland.auction.domain.exception.IErrorBundle;
 import com.rowland.auction.domain.interactor.DefaultSubscriber;
-import com.rowland.auction.domain.userfeature.interactor.UseCase;
+import com.rowland.auction.domain.interactor.UseCase;
 import com.rowland.auction.domain.userfeature.model.User;
 import com.rowland.auction.presentation.exception.ErrorMessageFactory;
 import com.rowland.auction.presentation.internal.di.PerActivity;

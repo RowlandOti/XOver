@@ -1,6 +1,6 @@
 package com.rowland.auction.domain.executor;
 
-    import com.rowland.auction.domain.userfeature.interactor.UseCase;
+    import com.rowland.auction.domain.interactor.UseCase;
 
     import java.util.concurrent.Executor;
 

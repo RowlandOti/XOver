@@ -1,4 +1,4 @@
-package com.rowland.auction.domain.userfeature.interactor;
+package com.rowland.auction.domain.interactor;
 
 import com.rowland.auction.domain.executor.IPostExecutionThread;
 import com.rowland.auction.domain.executor.IThreadExecutor;

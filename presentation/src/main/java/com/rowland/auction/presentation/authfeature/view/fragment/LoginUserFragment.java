@@ -80,7 +80,6 @@ public class LoginUserFragment extends ABaseFragment {
         if(getArguments() != null) {
             etEmail.setText(getArguments().getString(AuthActivity.AUTHEMAIL));
             etPassword.setText(getArguments().getString(AuthActivity.AUTHPASSWORD));
-            mLoginFinishBtnClickListener.onLoginFinishClicked(getArguments());
         }
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
