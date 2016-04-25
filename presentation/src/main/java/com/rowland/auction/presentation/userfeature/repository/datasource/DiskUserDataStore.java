@@ -1,37 +1,37 @@
 package com.rowland.auction.presentation.userfeature.repository.datasource;
 
-import com.rowland.auction.data.userfeature.cache.IUserCache;
-import com.rowland.auction.data.userfeature.payload.UserPayload;
-import com.rowland.auction.data.userfeature.repository.datasource.IUserDataStore;
+import com.rowland.auction.data.userfeature.cache.IBidCache;
+import com.rowland.auction.data.userfeature.payload.BidPayload;
+import com.rowland.auction.data.userfeature.repository.datasource.IBidDataStore;
 
 import java.util.List;
 
 import rx.Observable;
 
 /**
- * {@link IUserDataStore} implementation based on file system data store.
+ * {@link IBidDataStore} implementation based on file system data store.
  */
-public class DiskUserDataStore implements IUserDataStore {
+public class DiskUserDataStore implements IBidDataStore {
 
-    private final IUserCache userCache;
+    private final IBidCache userCache;
 
     /**
-     * Construct a {@link IUserDataStore} based file system data store.
+     * Construct a {@link IBidDataStore} based file system data store.
      *
-     * @param userCache A {@link IUserCache} to cache data retrieved from the api.
+     * @param userCache A {@link IBidCache} to cache data retrieved from the api.
      */
-    public DiskUserDataStore(IUserCache userCache) {
+    public DiskUserDataStore(IBidCache userCache) {
         this.userCache = userCache;
     }
 
     @Override
-    public Observable<List<UserPayload>> userEntityList() {
+    public Observable<List<BidPayload>> userEntityList() {
         //TODO: implement simple cache for storing/retrieving collections of users.
         throw new UnsupportedOperationException("Operation is not available!!!");
     }
 
     @Override
-    public Observable<UserPayload> userEntityDetails(final int userId) {
+    public Observable<BidPayload> userEntityDetails(final int userId) {
         return this.userCache.get(userId);
     }
 }

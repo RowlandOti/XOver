@@ -1,7 +1,8 @@
 package com.rowland.auction.data.userfeature.cache;
 
-import com.rowland.auction.data.userfeature.payload.UserPayload;
 import com.google.gson.Gson;
+import com.rowland.auction.data.userfeature.payload.UserPayload;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -9,12 +10,12 @@ import javax.inject.Singleton;
  * Class user as Serializer/Deserializer for user entities.
  */
 @Singleton
-public class JsonSerializer {
+public class UserJsonSerializer {
 
   private final Gson gson = new Gson();
 
   @Inject
-  public JsonSerializer() {}
+  public UserJsonSerializer() {}
 
   /**
    * Serialize an object to Json.

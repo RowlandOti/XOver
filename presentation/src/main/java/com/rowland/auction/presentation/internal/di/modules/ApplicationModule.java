@@ -3,7 +3,7 @@ package com.rowland.auction.presentation.internal.di.modules;
 import android.content.Context;
 
 import com.rowland.auction.data.executor.JobThreadExecutor;
-import com.rowland.auction.data.userfeature.cache.IUserCache;
+import com.rowland.auction.data.userfeature.cache.IBidCache;
 import com.rowland.auction.data.userfeature.cache.UserCache;
 import com.rowland.auction.presentation.userfeature.repository.UserDataRepository;
 import com.rowland.auction.domain.executor.IPostExecutionThread;
@@ -48,7 +48,7 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    IUserCache provideUserCache(UserCache userCache) {
+    IBidCache provideUserCache(UserCache userCache) {
         return userCache;
     }
 

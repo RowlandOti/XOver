@@ -16,7 +16,7 @@ import rx.Observable;
  * {@link UserCache} implementation.
  */
 @Singleton
-public class UserCache implements IUserCache {
+public class UserCache implements com.rowland.auction.data.userfeature.cache.IUserCache {
 
   private static final String SETTINGS_FILE_NAME = "com.rowland.auction.SETTINGS";
   private static final String SETTINGS_KEY_LAST_CACHE_UPDATE = "last_cache_update";
@@ -26,7 +26,7 @@ public class UserCache implements IUserCache {
 
   private final Context context;
   private final File cacheDir;
-  private final JsonSerializer serializer;
+  private final com.rowland.auction.data.userfeature.cache.UserJsonSerializer serializer;
   private final FileManager fileManager;
   private final IThreadExecutor threadExecutor;
 
@@ -34,11 +34,11 @@ public class UserCache implements IUserCache {
    * Constructor of the class {@link UserCache}.
    *
    * @param context A
-   * @param userCacheSerializer {@link JsonSerializer} for object serialization.
+   * @param userCacheSerializer {@link com.rowland.auction.data.userfeature.cache.UserJsonSerializer} for object serialization.
    * @param fileManager {@link FileManager} for saving serialized objects to the file system.
    */
   @Inject
-  public UserCache(Context context, JsonSerializer userCacheSerializer,
+  public UserCache(Context context, com.rowland.auction.data.userfeature.cache.UserJsonSerializer userCacheSerializer,
                    FileManager fileManager, IThreadExecutor executor) {
     if (context == null || userCacheSerializer == null || fileManager == null || executor == null) {
       throw new IllegalArgumentException("Invalid null parameter");

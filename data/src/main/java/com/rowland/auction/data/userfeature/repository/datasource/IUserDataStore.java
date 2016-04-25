@@ -15,7 +15,7 @@
  */
 package com.rowland.auction.data.userfeature.repository.datasource;
 
-import com.rowland.auction.data.userfeature.payload.UserPayload;
+import com.rowland.auction.data.userfeature.payload.BidPayload;
 
 import java.util.List;
 import rx.Observable;
@@ -25,14 +25,14 @@ import rx.Observable;
  */
 public interface IUserDataStore {
   /**
-   * Get an {@link Observable} which will emit a List of {@link UserPayload}.
+   * Get an {@link Observable} which will emit a List of {@link BidPayload}.
    */
-  Observable<List<UserPayload>> userEntityList();
+  Observable<List<BidPayload>> userEntityList();
 
   /**
-   * Get an {@link Observable} which will emit a {@link UserPayload} by its id.
+   * Get an {@link Observable} which will emit a {@link BidPayload} by its id.
    *
    * @param userId The id to retrieve user data.
    */
-  Observable<UserPayload> userEntityDetails(final int userId);
+  Observable<BidPayload> userEntityDetails(final int userId);
 }
