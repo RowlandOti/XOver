@@ -8,56 +8,61 @@ import com.google.gson.annotations.SerializedName;
 public class BidPayload {
 
     @SerializedName("id")
-    private int userId;
+    private int bidPayloadId;
 
-    @SerializedName("username")
-    private String username;
+    @SerializedName("title")
+    private String title;
 
-    @SerializedName("email")
-    private String email;
+    @SerializedName("description")
+    private String description;
 
-    @SerializedName("password")
-    private String password;
+    @SerializedName("status")
+    private String status;
 
     public BidPayload() {
 
     }
 
-    public int getUserId() {
-        return userId;
+    public int getBidPayloadId() {
+        return bidPayloadId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setBidPayloadId(int userId) {
+        this.bidPayloadId = bidPayloadId;
     }
 
-    public String getUsername() {
-        return username;
+    public String getTitle() {
+        return title;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getEmail() {
-        return email;
+    public String getDescription() {
+        return description;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String password) {
+        this.status = status;
     }
 
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("***** User Entity Details *****\n");
-        stringBuilder.append("id=" + this.getUserId() + "\n");
-        stringBuilder.append("username=" + this.getUsername() + "\n");
-        stringBuilder.append("email=" + this.getEmail() + "\n");
+        stringBuilder.append("id=" + this.getBidPayloadId() + "\n");
+        stringBuilder.append("title=" + this.getTitle() + "\n");
+        stringBuilder.append("description=" + this.getDescription() + "\n");
+        stringBuilder.append("status=" + this.getStatus() + "\n");
         stringBuilder.append("*******************************");
         return stringBuilder.toString();
     }

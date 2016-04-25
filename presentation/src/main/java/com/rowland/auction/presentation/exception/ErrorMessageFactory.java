@@ -3,7 +3,7 @@ package com.rowland.auction.presentation.exception;
 import android.content.Context;
 
 import com.rowland.auction.data.exception.NetworkConnectionException;
-import com.rowland.auction.data.userfeature.exception.BidNotFoundException;
+import com.rowland.auction.data.userfeature.exception.UserNotFoundException;
 import com.rowland.auction.presentation.R;
 
 
@@ -28,7 +28,7 @@ public class ErrorMessageFactory {
 
     if (exception instanceof NetworkConnectionException) {
       message = context.getString(R.string.exception_message_no_connection);
-    } else if (exception instanceof BidNotFoundException) {
+    } else if (exception instanceof UserNotFoundException) {
       message = context.getString(R.string.exception_message_user_not_found);
     }
 

@@ -2,18 +2,24 @@ package com.rowland.auction.data.dashboardfeature.rest.service;
 
 
 import com.rowland.auction.data.dashboardfeature.payload.BidPayload;
+import com.rowland.auction.data.rest.IApiEndPoint;
 
 import java.util.List;
 
+import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
+import retrofit2.http.POST;
+import retrofit2.http.Query;
 import rx.Observable;
 
 public interface IBidService {
 
-    @GET("users.json")
-    Observable<List<BidPayload>> listUsers();
+    @GET(IApiEndPoint.BIDS)
+    Observable<List<BidPayload>> listBids();
 
-    @GET("user_{userId}.json")
-    Observable<BidPayload> getUserWithId(@Path("userId") int userId);
+    @GET(IApiEndPoint.BIDS)
+    Observable<BidPayload> getBidWithId(@Query("id") int bidId);
+
+    @POST(IApiEndPoint.USERS)
+    Observable<BidPayload> create(@Body BidPayload payload);
 }

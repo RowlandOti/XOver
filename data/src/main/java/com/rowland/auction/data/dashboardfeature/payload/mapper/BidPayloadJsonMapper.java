@@ -1,6 +1,6 @@
-package com.rowland.auction.data.userfeature.payload.mapper;
+package com.rowland.auction.data.dashboardfeature.payload.mapper;
 
-import com.rowland.auction.data.userfeature.payload.BidPayload;
+import com.rowland.auction.data.dashboardfeature.payload.BidPayload;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
@@ -11,12 +11,12 @@ import javax.inject.Inject;
 /**
  * Class used to transform from Strings representing json to valid objects.
  */
-public class UserPayloadJsonMapper {
+public class BidPayloadJsonMapper {
 
     private final Gson gson;
 
     @Inject
-    public UserPayloadJsonMapper() {
+    public BidPayloadJsonMapper() {
         this.gson = new Gson();
     }
 

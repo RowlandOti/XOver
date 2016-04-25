@@ -2,7 +2,7 @@ package com.rowland.auction.presentation.authfeature.view.activity;
 
 import android.os.Bundle;
 
-import com.rowland.auction.data.userfeature.payload.BidPayload;
+import com.rowland.auction.data.userfeature.payload.UserPayload;
 import com.rowland.auction.presentation.ApplicationController;
 import com.rowland.auction.presentation.R;
 import com.rowland.auction.presentation.authfeature.view.fragment.LoginUserFragment;
@@ -50,7 +50,7 @@ public class AuthActivity extends ABaseActivity implements RegisterUserFragment.
 
     @Override
     public void onRegisterFinishClicked(Bundle args) {
-        BidPayload payload = new BidPayload();
+        UserPayload payload = new UserPayload();
         payload.setUsername(args.getString(AuthActivity.AUTHUSERNAME));
         payload.setEmail(args.getString(AuthActivity.AUTHEMAIL));
         payload.setPassword(args.getString(AuthActivity.AUTHPASSWORD));

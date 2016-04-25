@@ -2,8 +2,8 @@ package com.rowland.auction.presentation.userfeature.repository.datasource;
 
 import android.content.Context;
 
-import com.rowland.auction.data.userfeature.cache.IBidCache;
-import com.rowland.auction.data.userfeature.repository.datasource.IBidDataStore;
+import com.rowland.auction.data.userfeature.cache.IUserCache;
+import com.rowland.auction.data.userfeature.repository.datasource.IUserDataStore;
 import com.rowland.auction.presentation.ApplicationController;
 import com.rowland.auction.presentation.api.ApiManager;
 
@@ -11,16 +11,16 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * Factory that creates different implementations of {@link IBidDataStore}.
+ * Factory that creates different implementations of {@link IUserDataStore}.
  */
 @Singleton
 public class UserDataStoreFactory {
 
     private final Context context;
-    private final IBidCache userCache;
+    private final IUserCache userCache;
 
     @Inject
-    public UserDataStoreFactory(Context context, IBidCache userCache) {
+    public UserDataStoreFactory(Context context, IUserCache userCache) {
         if (context == null || userCache == null) {
             throw new IllegalArgumentException("Constructor parameters cannot be null!!!");
         }
@@ -29,10 +29,10 @@ public class UserDataStoreFactory {
     }
 
     /**
-     * Create {@link IBidDataStore} from a user id.
+     * Create {@link IUserDataStore} from a user id.
      */
-    public IBidDataStore create(int userId) {
-        IBidDataStore userDataStore;
+    public IUserDataStore create(int userId) {
+        IUserDataStore userDataStore;
 
         if (!this.userCache.isExpired() && this.userCache.isCached(userId)) {
             userDataStore = new DiskUserDataStore(this.userCache);
@@ -43,9 +43,9 @@ public class UserDataStoreFactory {
     }
 
     /**
-     * Create {@link IBidDataStore} to retrieve data from the Cloud.
+     * Create {@link IUserDataStore} to retrieve data from the Cloud.
      */
-    public IBidDataStore createCloudDataStore() {
+    public IUserDataStore createCloudDataStore() {
         ApiManager apiManager = ApplicationController.apiManager;
         return new CloudUserDataStore(apiManager, this.userCache);
     }

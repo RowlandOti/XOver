@@ -68,8 +68,8 @@ public class BidCache implements IBidCache {
 
   @Override public void put(BidPayload bidPayload) {
     if (bidPayload != null) {
-      File bidEntitiyFile = this.buildFile(bidPayload.getUserId());
-      if (!isCached(bidPayload.getUserId())) {
+      File bidEntitiyFile = this.buildFile(bidPayload.getBidPayloadId());
+      if (!isCached(bidPayload.getBidPayloadId())) {
         String jsonString = this.serializer.serialize(bidPayload);
         this.executeAsynchronously(new CacheWriter(this.fileManager, bidEntitiyFile,
             jsonString));

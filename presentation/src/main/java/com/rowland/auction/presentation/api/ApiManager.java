@@ -2,7 +2,7 @@ package com.rowland.auction.presentation.api;
 
 import android.content.Context;
 
-import com.rowland.auction.data.userfeature.payload.BidPayload;
+import com.rowland.auction.data.userfeature.payload.UserPayload;
 
 import java.util.List;
 
@@ -21,11 +21,11 @@ public class ApiManager extends ABaseApiManager {
      * Users API
      */
 
-    public Observable<List<BidPayload>> listUsers() {
+    public Observable<List<UserPayload>> listUsers() {
         return getUsersApi().listUsers();
     }
 
-    public Observable<BidPayload> getUserById(int id) {
+    public Observable<UserPayload> getUserById(int id) {
         return getUsersApi().getUserWithId(id);
     }
 
@@ -36,7 +36,7 @@ public class ApiManager extends ABaseApiManager {
         return getAuthApi().login(username, password);
     }
 
-    public Observable<BidPayload> register(BidPayload payload) {
+    public Observable<UserPayload> register(UserPayload payload) {
         return getAuthApi().register(payload);
     }
 }

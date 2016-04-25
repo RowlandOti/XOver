@@ -1,6 +1,6 @@
 package com.rowland.auction.data.userfeature.rest.service;
 
-import com.rowland.auction.data.userfeature.payload.BidPayload;
+import com.rowland.auction.data.userfeature.payload.UserPayload;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ import rx.Observable;
 public interface IUserService {
 
     @GET("users.json")
-    Observable<List<BidPayload>> listUsers();
+    Observable<List<UserPayload>> listUsers();
 
     @GET("user_{userId}.json")
-    Observable<BidPayload> getUserWithId(@Path("userId") int userId);
+    Observable<UserPayload> getUserWithId(@Path("userId") int userId);
 }
