@@ -47,6 +47,6 @@ public class BidListActivity extends ABaseActivity implements HasComponent<BidCo
   }
 
   @Override public void onBidClicked(BidModel bidModel) {
-    this.navigator.navigateToBidDetails(this, bidModel.getBidId());
+    this.navigator.navigateToBidDetails(this, bidModel.getBidModelId());
   }
 }

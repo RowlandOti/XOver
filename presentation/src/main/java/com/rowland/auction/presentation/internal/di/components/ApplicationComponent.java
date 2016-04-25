@@ -1,12 +1,12 @@
 /**
  * Copyright (C) 2015 Fernando Cejas Open Source Project
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,14 +17,16 @@ package com.rowland.auction.presentation.internal.di.components;
 
 import android.content.Context;
 
+import com.rowland.auction.domain.bidfeature.repository.IBidRepository;
 import com.rowland.auction.domain.executor.IPostExecutionThread;
 import com.rowland.auction.domain.executor.IThreadExecutor;
 import com.rowland.auction.domain.userfeature.repository.IUserRepository;
 import com.rowland.auction.presentation.internal.di.modules.ApplicationModule;
 import com.rowland.auction.presentation.view.activity.ABaseActivity;
 
-import dagger.Component;
 import javax.inject.Singleton;
+
+import dagger.Component;
 
 /**
  * A component whose lifetime is the life of the application.
@@ -32,11 +34,16 @@ import javax.inject.Singleton;
 @Singleton // Constraints this component to one-per-application or unscoped bindings.
 @Component(modules = ApplicationModule.class)
 public interface ApplicationComponent {
-  void inject(ABaseActivity baseActivity);
+    void inject(ABaseActivity baseActivity);
 
-  //Exposed to sub-graphs.
-  Context context();
-  IThreadExecutor threadExecutor();
-  IPostExecutionThread postExecutionThread();
-  IUserRepository userRepository();
+    //Exposed to sub-graphs.
+    Context context();
+
+    IThreadExecutor threadExecutor();
+
+    IPostExecutionThread postExecutionThread();
+
+    IUserRepository userRepository();
+
+    IBidRepository bidRepository();
 }

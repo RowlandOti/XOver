@@ -2,9 +2,13 @@ package com.rowland.auction.presentation.internal.di.modules;
 
 import android.content.Context;
 
+import com.rowland.auction.data.bidfeature.cache.BidCache;
+import com.rowland.auction.data.bidfeature.cache.IBidCache;
 import com.rowland.auction.data.executor.JobThreadExecutor;
 import com.rowland.auction.data.userfeature.cache.IUserCache;
 import com.rowland.auction.data.userfeature.cache.UserCache;
+import com.rowland.auction.domain.bidfeature.repository.IBidRepository;
+import com.rowland.auction.presentation.bidfeature.repository.BidDataRepository;
 import com.rowland.auction.presentation.userfeature.repository.UserDataRepository;
 import com.rowland.auction.domain.executor.IPostExecutionThread;
 import com.rowland.auction.domain.executor.IThreadExecutor;
@@ -56,5 +60,17 @@ public class ApplicationModule {
     @Singleton
     IUserRepository provideUserRepository(UserDataRepository userDataRepository) {
         return userDataRepository;
+    }
+
+    @Provides
+    @Singleton
+    IBidCache provideBidCache(BidCache bidCache) {
+        return bidCache;
+    }
+
+    @Provides
+    @Singleton
+    IBidRepository provideBidRepository(BidDataRepository bidDataRepository) {
+        return bidDataRepository;
     }
 }
