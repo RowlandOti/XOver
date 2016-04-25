@@ -30,10 +30,7 @@ public class UserPayloadDataMapper {
         User user = null;
         if (userPayload != null) {
             user = new User(userPayload.getUserId());
-            user.setCoverUrl(userPayload.getCoverUrl());
-            user.setFullName(userPayload.getFullname());
-            user.setDescription(userPayload.getDescription());
-            user.setFollowers(userPayload.getFollowers());
+            user.setUsername(userPayload.getUsername());
             user.setEmail(userPayload.getEmail());
         }
         return user;

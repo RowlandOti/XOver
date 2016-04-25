@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme">
         <!--Main-Activity-->
         <activity
-            android:name=".view.activity.MainActivity"
+            android:name=".view.activity.SplashActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,7 +33,7 @@
             android:name=".authfeature.view.activity.AuthActivity"
             android:label="@string/activity_login"></activity>
         <activity
-            android:name=".dashboardfeature.view.DashboardActivity"
+            android:name=".dashboardfeature.view.activity.DashboardActivity"
             android:label="@string/activity_dashboard"></activity>
     </application>
 

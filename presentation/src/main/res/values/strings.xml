@@ -41,4 +41,6 @@
     // Login User texts
     <string name="tv_login">Login</string>
     <string name="bt_login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
 </resources>

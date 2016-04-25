@@ -22,8 +22,8 @@
         <TextView
             android:id="@+id/et_action"
             style="@style/AppTheme.TextViewHeader"
-            android:textColor="@color/app_color_white"
-            android:text="@string/tv_login" />
+            android:text="@string/tv_login"
+            android:textColor="@color/app_color_white" />
     </RelativeLayout>
 
     <LinearLayout
@@ -64,7 +64,7 @@
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/bt_login"
             style="@style/Button.Login"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableRight="@drawable/ic_action_next_item"
             android:padding="10dp" />

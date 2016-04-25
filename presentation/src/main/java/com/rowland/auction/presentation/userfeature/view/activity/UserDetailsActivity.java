@@ -52,7 +52,7 @@ public class UserDetailsActivity extends ABaseActivity implements HasComponent<U
   private void initializeActivity(Bundle savedInstanceState) {
     if (savedInstanceState == null) {
       this.userId = getIntent().getIntExtra(INTENT_EXTRA_PARAM_USER_ID, -1);
-      addFragment(R.id.fragmentContainer, new UserDetailsFragment());
+      addFragment(R.id.fragmentContainer, new UserDetailsFragment(), true);
     } else {
       this.userId = savedInstanceState.getInt(INSTANCE_STATE_PARAM_USER_ID);
     }

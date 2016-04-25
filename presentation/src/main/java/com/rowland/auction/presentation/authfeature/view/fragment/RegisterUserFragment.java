@@ -1,5 +1,6 @@
 package com.rowland.auction.presentation.authfeature.view.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -23,7 +24,10 @@ import butterknife.ButterKnife;
  */
 public class RegisterUserFragment extends ABaseFragment {
 
-    private onRegisterFinishBtnClickListener registerFinishBtnClickListener;
+    // Class log identifier
+    public final static String LOG_TAG = RegisterUserFragment.class.getSimpleName();
+
+    private onRegisterFinishBtnClickListener mRegisterFinishBtnClickListener;
 
     public interface onRegisterFinishBtnClickListener {
         void onRegisterFinishClicked(Bundle args);
@@ -86,7 +90,7 @@ public class RegisterUserFragment extends ABaseFragment {
                 args.putString(AuthActivity.AUTHUSERNAME, etUsername.getText().toString().trim());
                 args.putString(AuthActivity.AUTHEMAIL, etEmail.getText().toString().trim());
                 args.putString(AuthActivity.AUTHPASSWORD, etPassword.getText().toString().trim());
-                registerFinishBtnClickListener.onRegisterFinishClicked(args);
+                mRegisterFinishBtnClickListener.onRegisterFinishClicked(args);
             }
         });
         tvLogin.setOnClickListener(new View.OnClickListener() {
@@ -94,8 +98,30 @@ public class RegisterUserFragment extends ABaseFragment {
             public void onClick(View v) {
                 Bundle args = new Bundle();
                 args.putString(AuthActivity.AUTHEMAIL, etEmail.getText().toString().trim());
-                registerFinishBtnClickListener.onCallLoginClicked(args);
+                mRegisterFinishBtnClickListener.onCallLoginClicked(args);
             }
         });
+    }
+
+    // Called after fragment is attached to activity
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        // Ensure attached activity has implemented the callback interface.
+        try {
+            // Acquire the implemented callback
+            mRegisterFinishBtnClickListener = (onRegisterFinishBtnClickListener) context;
+        } catch (ClassCastException e) {
+            // If not, it throws an exception
+            throw new ClassCastException(context.toString() + " must implement onRegisterFinishBtnClickListener");
+        }
+    }
+
+    // Called after fragment is detached from activity
+    @Override
+    public void onDetach() {
+        // Avoid leaking,
+        mRegisterFinishBtnClickListener = null;
+        super.onDetach();
     }
 }

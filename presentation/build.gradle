@@ -49,6 +49,7 @@ dependencies {
     compile presentationDependencies.supportRecyclerView
     compile presentationDependencies.supportAppCompatV7
     compile presentationDependencies.rxJava
+    compile presentationDependencies.supportDesign
     compile presentationDependencies.rxAndroid
     provided presentationDependencies.javaxAnnotation
     // DEVELOPMENT-ONLY DEPENDENCIES

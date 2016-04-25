@@ -31,7 +31,7 @@ public class UserDetailsFragment extends ABaseFragment implements IUserDetailsVi
   @Inject UserDetailsPresenter userDetailsPresenter;
 
   @Bind(R.id.iv_cover) ImageView iv_cover;
-  @Bind(R.id.tv_fullname) TextView tv_fullname;
+  @Bind(R.id.tv_fullname) TextView tv_username;
   @Bind(R.id.tv_email) TextView tv_email;
   @Bind(R.id.tv_followers) TextView tv_followers;
   @Bind(R.id.tv_description) TextView tv_description;
@@ -85,10 +85,8 @@ public class UserDetailsFragment extends ABaseFragment implements IUserDetailsVi
   @Override public void renderUser(UserModel user) {
     if (user != null) {
       //this.iv_cover.setImageUrl(user.getCoverUrl());
-      this.tv_fullname.setText(user.getFullName());
+      this.tv_username.setText(user.getUsername());
       this.tv_email.setText(user.getEmail());
-      this.tv_followers.setText(String.valueOf(user.getFollowers()));
-      this.tv_description.setText(user.getDescription());
     }
   }
 

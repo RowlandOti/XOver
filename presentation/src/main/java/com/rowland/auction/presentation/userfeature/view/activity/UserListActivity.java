@@ -31,7 +31,7 @@ public class UserListActivity extends ABaseActivity implements HasComponent<User
 
     this.initializeInjector();
     if (savedInstanceState == null) {
-      addFragment(R.id.fragmentContainer, new UserListFragment());
+      addFragment(R.id.fragmentContainer, new UserListFragment(),true);
     }
   }
 

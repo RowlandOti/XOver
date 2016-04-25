@@ -1,4 +1,4 @@
-package com.rowland.auction.presentation.dashboardfeature.view;
+package com.rowland.auction.presentation.dashboardfeature.view.activity;
 
 import android.os.Bundle;
 

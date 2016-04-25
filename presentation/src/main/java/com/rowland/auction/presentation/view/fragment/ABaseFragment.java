@@ -1,6 +1,7 @@
 package com.rowland.auction.presentation.view.fragment;
 
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -10,6 +11,10 @@ import com.rowland.auction.presentation.internal.di.HasComponent;
  * Base {@link Fragment} class for every fragment in this application.
  */
 public abstract class ABaseFragment extends Fragment {
+
+    // Class log identifier
+    public final static String LOG_TAG = ABaseFragment.class.getSimpleName();
+
     /**
      * Shows a {@link Toast} message.
      *
@@ -25,11 +30,8 @@ public abstract class ABaseFragment extends Fragment {
      * @param etToBeValidated An EditText whose data is to be validated.
      */
     private boolean isValidEditTextData(EditText etToBeValidated) {
-        String etTxt = etToBeValidated.getText().toString().trim();
-        if (etTxt == null) {
-            if (etToBeValidated.getText().length() == 0) {
-                etToBeValidated.setError("Required");
-            }
+        if (etToBeValidated.getText().toString().trim().length() == 0) {
+            etToBeValidated.setError("Required");
             return false;
         }
         return true;
@@ -42,12 +44,11 @@ public abstract class ABaseFragment extends Fragment {
      */
     protected boolean isValidEditTextData(EditText... etToBeValidated) {
         boolean isEtTextDataValid = true;
-        for (int i = 0; i < etToBeValidated.length; i++) {
+        int i = 0;
+        while (i < etToBeValidated.length && isEtTextDataValid) {
             EditText et = etToBeValidated[i];
             isEtTextDataValid = isValidEditTextData(et);
-            if (!isEtTextDataValid) {
-                return isEtTextDataValid;
-            }
+            i++;
         }
         return isEtTextDataValid;
     }

@@ -3,12 +3,10 @@ package com.rowland.auction.presentation.api;
 import android.content.Context;
 import android.util.Log;
 
-import com.rowland.auction.data.BuildConfig;
 import com.rowland.auction.data.userfeature.payload.UserPayload;
 
 import java.util.List;
 
-import retrofit2.Callback;
 import rx.Observable;
 
 public class ApiManager extends ABaseApiManager {
@@ -20,26 +18,26 @@ public class ApiManager extends ABaseApiManager {
         mContext = context;
     }
 
-    public void login(String username, String password, Callback<UserPayload> callback) {
-        if(BuildConfig.DEBUG) {
-            Log.i(LOG_TAG, "Login - " + username + " Password - " + password);
-        }
-        getAuthApi().authenticate(username, password, callback);
-    }
-
     /**
      * Users API
      */
 
     public Observable<List<UserPayload>> listUsers() {
-       return getUsersApi().listUsers();
+        return getUsersApi().listUsers();
     }
 
     public Observable<UserPayload> getUserById(int id) {
         return getUsersApi().getUserWithId(id);
     }
 
-    public void createUser(UserPayload payload) {
-        getUsersApi().createUser(payload);
+    /**
+     * Auth API
+     */
+    public Observable<String> login(String username, String password) {
+        return getAuthApi().login(username, password);
+    }
+
+    public Observable<UserPayload> register(UserPayload payload) {
+        return getAuthApi().register(payload);
     }
 }

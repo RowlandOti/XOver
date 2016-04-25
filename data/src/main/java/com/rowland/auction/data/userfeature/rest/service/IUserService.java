@@ -17,7 +17,4 @@ public interface IUserService {
 
     @GET("user_{userId}.json")
     Observable<UserPayload> getUserWithId(@Path("userId") int userId);
-
-    @POST(IApiEndPoint.USERS)
-    Observable<UserPayload> createUser(UserPayload payload);
 }

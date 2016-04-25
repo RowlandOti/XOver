@@ -2,6 +2,8 @@ package com.rowland.auction.presentation.authfeature.view.activity;
 
 import android.os.Bundle;
 
+import com.rowland.auction.data.userfeature.payload.UserPayload;
+import com.rowland.auction.presentation.ApplicationController;
 import com.rowland.auction.presentation.R;
 import com.rowland.auction.presentation.authfeature.view.fragment.LoginUserFragment;
 import com.rowland.auction.presentation.authfeature.view.fragment.RegisterUserFragment;
@@ -9,14 +11,20 @@ import com.rowland.auction.presentation.view.activity.ABaseActivity;
 
 public class AuthActivity extends ABaseActivity implements RegisterUserFragment.onRegisterFinishBtnClickListener, LoginUserFragment.onLoginFinishBtnClickListener {
 
+    // Class log identifier
+    public final static String LOG_TAG = AuthActivity.class.getSimpleName();
+
     public static String AUTHEMAIL = "AUTH.EMAIL";
     public static String AUTHUSERNAME = "AUTH.USERNAME";
     public static String AUTHPASSWORD = "AUTH.PASSWORD";
+
+    private String mAuthToken = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
+        setStatusbarTransparent(true);
         // Check that the activity is using the layout with the fragment_container id
         if (findViewById(R.id.fragment_container) != null) {
             // However, if we're being restored from a previous state, then we don't need to do
@@ -32,16 +40,21 @@ public class AuthActivity extends ABaseActivity implements RegisterUserFragment.
 
     private void showLoginFragment(Bundle args) {
         LoginUserFragment fragment = LoginUserFragment.newInstance(args);
-        replaceFragment(R.id.fragment_container, fragment, false);
+        replaceFragment(R.id.fragment_container, fragment, false, true);
     }
 
     private void showRegisterFragment(Bundle args) {
-        LoginUserFragment fragment = LoginUserFragment.newInstance(args);
-        replaceFragment(R.id.fragment_container, fragment, false);
+        RegisterUserFragment fragment = RegisterUserFragment.newInstance(args);
+        replaceFragment(R.id.fragment_container, fragment, false, true);
     }
 
     @Override
     public void onRegisterFinishClicked(Bundle args) {
+        UserPayload payload = new UserPayload();
+        payload.setUsername(args.getString(AuthActivity.AUTHUSERNAME));
+        payload.setEmail(args.getString(AuthActivity.AUTHEMAIL));
+        payload.setPassword(args.getString(AuthActivity.AUTHPASSWORD));
+        ApplicationController.apiManager.register(payload);
         showLoginFragment(args);
     }
 
@@ -51,8 +64,12 @@ public class AuthActivity extends ABaseActivity implements RegisterUserFragment.
     }
 
     @Override
-    public void onLoginFinishClicked(String email, String passWord) {
-
+    public void onLoginFinishClicked(Bundle args) {
+        String email = args.getString(AuthActivity.AUTHEMAIL);
+        String password = args.getString(AuthActivity.AUTHPASSWORD);
+        ApplicationController.apiManager.login(email, password);
+        setResult(RESULT_OK, getIntent().putExtras(args));
+        finish();
     }
 
     @Override

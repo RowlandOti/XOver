@@ -1,5 +1,6 @@
 package com.rowland.auction.presentation.authfeature.view.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.rowland.auction.presentation.R;
+import com.rowland.auction.presentation.authfeature.view.activity.AuthActivity;
 import com.rowland.auction.presentation.view.fragment.ABaseFragment;
 
 import butterknife.Bind;
@@ -22,12 +24,14 @@ import butterknife.ButterKnife;
  */
 public class LoginUserFragment extends ABaseFragment {
 
-    private onLoginFinishBtnClickListener loginFinishBtnClickListener;
-    private String email;
-    private String passWord;
+    // Class log identifier
+    public final static String LOG_TAG = LoginUserFragment.class.getSimpleName();
+
+    private onLoginFinishBtnClickListener mLoginFinishBtnClickListener;
 
     public interface onLoginFinishBtnClickListener {
-        void onLoginFinishClicked(String email, String passWord);
+        void onLoginFinishClicked(Bundle args);
+
         void onCallRegisterClicked(Bundle args);
     }
 
@@ -72,24 +76,53 @@ public class LoginUserFragment extends ABaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        if(getArguments() != null) {
+            etEmail.setText(getArguments().getString(AuthActivity.AUTHEMAIL));
+            etPassword.setText(getArguments().getString(AuthActivity.AUTHPASSWORD));
+            mLoginFinishBtnClickListener.onLoginFinishClicked(getArguments());
+        }
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!isValidEditTextData(etEmail, etPassword)) {
                     return;
                 }
-                email = etEmail.getText().toString().trim();
-                passWord = etPassword.getText().toString().trim();
-                loginFinishBtnClickListener.onLoginFinishClicked(email, passWord);
+                Bundle args = new Bundle();
+                args.putString(AuthActivity.AUTHEMAIL, etEmail.getText().toString().trim());
+                args.putString(AuthActivity.AUTHPASSWORD, etPassword.getText().toString().trim());
+                mLoginFinishBtnClickListener.onLoginFinishClicked(args);
             }
         });
         tvRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle args = new Bundle();
-                args.putString(etEmail.getText().toString().trim(), "AUTH.EMAIL");
-                loginFinishBtnClickListener.onCallRegisterClicked(args);
+                args.putString(AuthActivity.AUTHEMAIL, etEmail.getText().toString().trim());
+                mLoginFinishBtnClickListener.onCallRegisterClicked(args);
             }
         });
+    }
+
+    // Called after fragment is attached to activity
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        // Ensure attached activity has implemented the callback interface.
+        try {
+            // Acquire the implemented callback
+            mLoginFinishBtnClickListener = (onLoginFinishBtnClickListener) context;
+        } catch (ClassCastException e) {
+            // If not, it throws an exception
+            throw new ClassCastException(context.toString() + " must implement onLoginFinishBtnClickListener");
+        }
+    }
+
+    // Called after fragment is detached from activity
+    @Override
+    public void onDetach() {
+        // Avoid leaking,
+        mLoginFinishBtnClickListener = null;
+        super.onDetach();
     }
 }
