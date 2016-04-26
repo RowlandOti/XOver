@@ -18,6 +18,9 @@ import javax.inject.Singleton;
 @Singleton
 public class BidPayloadModelMapper {
 
+    // Class log identifier
+    public final static String LOG_TAG = BidPayloadModelMapper.class.getSimpleName();
+
     @Inject
     public BidPayloadModelMapper() {
     }
@@ -65,7 +68,7 @@ public class BidPayloadModelMapper {
      */
     public BidPayload transformModelToPayload(BidModel bidModel) {
         BidPayload bidPayload = null;
-        if (bidPayload != null) {
+        if (bidModel != null) {
             bidPayload = new BidPayload();
             bidPayload.setBidPayloadId(bidModel.getBidModelId());
             bidPayload.setTitle(bidModel.getTitle());
@@ -83,9 +86,9 @@ public class BidPayloadModelMapper {
      */
     public List<BidPayload> transformModelToPayload(Collection<BidModel> bidModelCollection) {
         List<BidPayload> bidPayloadList = new ArrayList<>(20);
-        BidPayload bidPayload;
+
         for (BidModel bidModel : bidModelCollection) {
-            bidPayload = transformModelToPayload(bidModel);
+            BidPayload bidPayload = transformModelToPayload(bidModel);
             if (bidPayload != null) {
                 bidPayloadList.add(bidPayload);
             }

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,8 @@ import butterknife.OnClick;
  */
 public class BidListFragment extends ABaseFragment implements IBidListView {
 
+    // Class log identifier
+    public final static String LOG_TAG = BidListFragment.class.getSimpleName();
     /**
      * Interface for listening bid list events.
      */
@@ -147,6 +150,7 @@ public class BidListFragment extends ABaseFragment implements IBidListView {
     public void renderBidList(Collection<BidModel> bidModelCollection) {
         if (bidModelCollection != null) {
             this.bidsAdapter.setBidsCollection(bidModelCollection);
+            Log.d(LOG_TAG, "I WAS CALLED BY renderBidList()" +bidModelCollection.toString());
         }
     }
 

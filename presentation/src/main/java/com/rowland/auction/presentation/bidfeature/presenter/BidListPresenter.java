@@ -1,6 +1,7 @@
 package com.rowland.auction.presentation.bidfeature.presenter;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.rowland.auction.domain.exception.DefaultErrorBundle;
 import com.rowland.auction.domain.exception.IErrorBundle;
@@ -26,6 +27,9 @@ import javax.inject.Named;
  */
 @PerActivity
 public class BidListPresenter implements IPresenter {
+
+  // Class log identifier
+  public final static String LOG_TAG = BidListPresenter.class.getSimpleName();
 
   private IBidListView viewListView;
 
@@ -94,8 +98,7 @@ public class BidListPresenter implements IPresenter {
   }
 
   private void showBidsCollectionInView(Collection<Bid> bidsCollection) {
-    final Collection<BidModel> bidModelsCollection =
-        this.bidModelDataMapper.transform(bidsCollection);
+    final Collection<BidModel> bidModelsCollection = this.bidModelDataMapper.transform(bidsCollection);
     this.viewListView.renderBidList(bidModelsCollection);
   }
 

@@ -54,26 +54,24 @@ public class CloudBidDataStore implements IBidDataStore {
         Observable<List<BidPayload>> bidListPayloadObservable = this.mApiManager.listBids();
         return bidListPayloadObservable.create(subscriber -> {
             if (NetworkUtility.isNetworkAvailable(mApiManager.getContext())) {
-                List<BidPayload> responseBidEntities = null;
+                List<BidPayload> responseBidPayload = null;
                 try {
-                    responseBidEntities = bidListPayloadObservable.toBlocking().single();
+                    responseBidPayload = bidListPayloadObservable.toBlocking().single();
                 } catch (Exception e) {
                     // subscriber.onError(new NetworkConnectionException(e.getCause()));
                     Log.d(LOG_TAG, "NETWORK UNKNOWNHOST EXCEPTION 1");
                 }
-                if (responseBidEntities != null) {
-                    subscriber.onNext(responseBidEntities);
-
-                    for (BidPayload bidPayload : responseBidEntities) {
+                if (responseBidPayload != null) {
+                    subscriber.onNext(responseBidPayload);
+                    for (BidPayload bidPayload : responseBidPayload) {
                         BidModel bidModel = bitPayloadModelMapper.transformPayloadToModel(bidPayload);
                         bidModel.save();
                         Log.d(LOG_TAG, "SAVING FROM NETWORK");
                     }
-
                     subscriber.onCompleted();
                 } else {
-                    responseBidEntities = bitPayloadModelMapper.transformModelToPayload(FakeBidSeeder.seedDatabase());
-                    subscriber.onNext(responseBidEntities);
+                    responseBidPayload = bitPayloadModelMapper.transformModelToPayload(FakeBidSeeder.seedDatabase());
+                    subscriber.onNext(responseBidPayload);
                     Log.d(LOG_TAG, "SAVING FROM FAKING");
                     subscriber.onCompleted();
                 }
@@ -89,18 +87,20 @@ public class CloudBidDataStore implements IBidDataStore {
     public Observable<BidPayload> bidPayloadDetails(final int bidId) {
         Observable<BidPayload> bidDetailsPayloadObservable = this.mApiManager.getBidById(bidId).doOnNext(saveToCacheAction);
         return bidDetailsPayloadObservable.create(subscriber -> {
+            BidPayload responseBidDetails = null;
             if (NetworkUtility.isNetworkAvailable(mApiManager.getContext())) {
                 try {
-                    BidPayload responseBidDetails = bidDetailsPayloadObservable.toBlocking().single();
-                    if (responseBidDetails != null) {
-                        subscriber.onNext(responseBidDetails);
-                        subscriber.onCompleted();
-                    } else {
-                        // ToDo: Fake some Data
-                    }
+                    responseBidDetails = bidDetailsPayloadObservable.toBlocking().single();
                 } catch (Exception e) {
                     subscriber.onError(new NetworkConnectionException(e.getCause()));
                 }
+                if (responseBidDetails != null) {
+                    subscriber.onNext(responseBidDetails);
+                    subscriber.onCompleted();
+                } else {
+                    // ToDo: Fake some Data
+                }
+
             } else {
                 subscriber.onError(new NetworkConnectionException());
             }
