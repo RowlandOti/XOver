@@ -2,11 +2,11 @@ package com.rowland.auction.presentation.api;
 
 import android.content.Context;
 
+import com.google.gson.GsonBuilder;
 import com.rowland.auction.data.authfeature.rest.service.IAuthService;
 import com.rowland.auction.data.bidfeature.rest.service.IBidService;
 import com.rowland.auction.data.rest.interceptor.ApiSessionRequestInterceptor;
 import com.rowland.auction.data.userfeature.rest.service.IUserService;
-import com.google.gson.GsonBuilder;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -28,6 +28,7 @@ public abstract class ABaseApiManager {
     public ABaseApiManager() {
         createAuthApi();
         mUserApi = createApi(IUserService.class, API_ENDPOINT);
+        mBidApi = createApi(IBidService.class, API_ENDPOINT);
     }
 
     public void setupEndpoint(String instanceUrl) {
@@ -52,6 +53,7 @@ public abstract class ABaseApiManager {
                 .build()
                 .create(clazz);
     }
+
     private void createAuthApi() {
         mAuthApi = new Retrofit.Builder()
                 .baseUrl(API_ENDPOINT.getUrl())

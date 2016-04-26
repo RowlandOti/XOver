@@ -12,12 +12,12 @@ public interface IBidDataStore {
   /**
    * Get an {@link Observable} which will emit a List of {@link BidPayload}.
    */
-  Observable<List<BidPayload>> bidEntityList();
+  Observable<List<BidPayload>> bidPayloadList();
 
   /**
    * Get an {@link Observable} which will emit a {@link BidPayload} by its id.
    *
    * @param bidId The id to retrieve bid data.
    */
-  Observable<BidPayload> bidEntityDetails(final int bidId);
+  Observable<BidPayload> bidPayloadDetails(final int bidId);
 }

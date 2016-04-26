@@ -7,6 +7,7 @@ import android.util.Log;
 import com.rowland.auction.presentation.ApplicationController;
 import com.rowland.auction.presentation.R;
 import com.rowland.auction.presentation.authfeature.view.activity.AuthActivity;
+import com.rowland.auction.presentation.bidfeature.view.activity.BidListActivity;
 import com.rowland.auction.presentation.dashboardfeature.view.activity.DashboardActivity;
 import com.rowland.auction.presentation.utility.PrefManager;
 
@@ -33,7 +34,7 @@ public class SplashActivity extends ABaseActivity {
 
     private void startDashBoardActivity() {
         ApplicationController.apiManager.setupEndpoint(PrefManager.getInstanceUrl());
-        Intent requestDashBoard = new Intent(SplashActivity.this, DashboardActivity.class);
+        Intent requestDashBoard = new Intent(SplashActivity.this, BidListActivity.class);
         // requestDashBoard.putExtras(getIntent().getExtras());
         startActivity(requestDashBoard);
     }

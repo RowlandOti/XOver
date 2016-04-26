@@ -17,7 +17,8 @@ ext {
   okHttpVersion = '2.5.0'
   androidAnnotationsVersion = '21.0.3'
   retrofitVersion = '2.0.1'
-  dbFlowVersion = '3.0.0-beta5'
+  dbFlowVersion = '3.0.0-beta6'
+  dbSugarOrmVersion = '1.5'
 
   // Testing
   robolectricVersion = '3.0'
@@ -79,6 +80,7 @@ ext {
       dbFlowCore:         "com.github.Raizlabs.DBFlow:dbflow-core:$dbFlowVersion",
       dbFlowProcessor:    "com.github.Raizlabs.DBFlow:dbflow-processor:$dbFlowVersion",
       dbFlowSQLCipher:    "com.github.Raizlabs.DBFlow:dbflow-sqlcipher:$dbFlowVersion",
+      dbSugarOrm:         "com.github.satyan:sugar:$dbSugarOrmVersion",
   ]
 
   dataTestDependencies = [

@@ -17,7 +17,7 @@ public class BidPayload {
     private String description;
 
     @SerializedName("status")
-    private String status;
+    private boolean status;
 
     public BidPayload() {
 
@@ -47,11 +47,11 @@ public class BidPayload {
         this.description = description;
     }
 
-    public String getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(String password) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 

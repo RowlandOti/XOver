@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.Typeface;
 
+import com.orm.SugarApp;
 import com.rowland.auction.presentation.api.ApiManager;
 import com.rowland.auction.presentation.internal.di.components.ApplicationComponent;
 import com.rowland.auction.presentation.internal.di.components.DaggerApplicationComponent;
@@ -16,7 +17,7 @@ import java.util.Map;
 /**
  * Android Main Application
  */
-public class ApplicationController extends Application {
+public class ApplicationController extends SugarApp {
 
     private ApplicationComponent appComponent;
 
@@ -28,6 +29,7 @@ public class ApplicationController extends Application {
     public void onCreate() {
         super.onCreate();
         this.initializeInjector();
+        initializeDatabase();
         this.initializeLeakDetection();
 
         appControllerInstance = this;
@@ -38,6 +40,11 @@ public class ApplicationController extends Application {
         this.appComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
                 .build();
+    }
+
+    private void initializeDatabase() {
+       /* FlowManager.init(new FlowConfig.Builder(this)
+                .openDatabasesOnInit(true).build());*/
     }
 
     private void initializeLeakDetection() {

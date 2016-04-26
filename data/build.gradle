@@ -60,12 +60,13 @@ dependencies {
     compile dataDependencies.retrofitRxJavaAdapter
     compile dataDependencies.okHttp
     // Use - Database support
-    compile dataDependencies.dbFlow
-    compile dataDependencies.dbFlowCore
+    //compile dataDependencies.dbFlow
+    //compile dataDependencies.dbFlowCore
     // sql-cipher database encyrption (optional)
-    compile dataDependencies.dbFlowSQLCipher
-    apt dataDependencies.dbFlowProcessor
+    //compile dataDependencies.dbFlowSQLCipher
+    //apt dataDependencies.dbFlowProcessor
     // Use - Dependency Injection support
     compile dataDependencies.dagger
+    compile dataDependencies.dbSugarOrm
     // DEVELOPMENT-ONLY DEPENDENCIES
 }

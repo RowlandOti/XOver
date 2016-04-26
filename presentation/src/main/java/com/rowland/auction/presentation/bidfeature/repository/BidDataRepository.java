@@ -40,13 +40,13 @@ public class BidDataRepository implements IRepository, IBidRepository {
     public Observable<List<Bid>> getList() {
         //we always get all bids from the cloud
         final IBidDataStore bidDataStore = this.bidDataStoreFactory.createCloudDataStore();
-        return bidDataStore.bidEntityList().map(bidEntities -> this.bidEntityDataMapper.transform(bidEntities));
+        return bidDataStore.bidPayloadList().map(bidEntities -> this.bidEntityDataMapper.transform(bidEntities));
     }
 
     @SuppressWarnings("Convert2MethodRef")
     @Override
     public Observable<Bid> getItem(int bidId) {
         final IBidDataStore bidDataStore = this.bidDataStoreFactory.create(bidId);
-        return bidDataStore.bidEntityDetails(bidId).map(bidEntity -> this.bidEntityDataMapper.transform(bidEntity));
+        return bidDataStore.bidPayloadDetails(bidId).map(bidEntity -> this.bidEntityDataMapper.transform(bidEntity));
     }
 }

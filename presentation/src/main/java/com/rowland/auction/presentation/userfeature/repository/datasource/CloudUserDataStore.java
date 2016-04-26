@@ -18,7 +18,6 @@ import rx.functions.Action1;
  */
 public class CloudUserDataStore implements IUserDataStore {
 
-    //private final IRestApi restApi;
     private final ApiManager mApiManager;
     private final IUserCache userCache;
     private final Action1<UserPayload> saveToCacheAction = userEntity -> {

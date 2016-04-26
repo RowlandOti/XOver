@@ -102,7 +102,7 @@ public class BidDetailsFragment extends ABaseFragment implements IBidDetailsView
             //this.iv_cover.setImageUrl(bid.getCoverUrl());
             this.tv_title.setText(bid.getTitle());
             this.tv_description.setText(bid.getDescription());
-            this.tv_status.setText(bid.getStatus());
+            this.tv_status.setText(Boolean.toString(bid.getStatus()));
         }
     }
 

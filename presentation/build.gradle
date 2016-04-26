@@ -54,6 +54,4 @@ dependencies {
     provided presentationDependencies.javaxAnnotation
     // DEVELOPMENT-ONLY DEPENDENCIES
     compile developmentDependencies.leakCanary
-
-    compile 'com.android.support:support-v4:23.1.1'
 }

@@ -10,7 +10,7 @@ public class Bid {
 
     private String title;
     private String description;
-    private String status;
+    private boolean status;
 
     public int getBidId() {
         return bidId;
@@ -32,11 +32,11 @@ public class Bid {
         return description;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 
-    public String getStatus() {
+    public boolean getStatus() {
         return status;
     }
 

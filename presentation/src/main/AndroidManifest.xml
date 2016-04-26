@@ -29,12 +29,26 @@
             android:name=".userfeature.view.activity.UserDetailsActivity"
             android:label="@string/activity_title_user_details"></activity>
 
+        <!--User-Feature-->
         <activity
             android:name=".authfeature.view.activity.AuthActivity"
             android:label="@string/activity_login"></activity>
         <activity
             android:name=".dashboardfeature.view.activity.DashboardActivity"
             android:label="@string/activity_dashboard"></activity>
+
+        <!--User-Feature-->
+        <activity
+            android:name=".bidfeature.view.activity.BidListActivity"
+            android:label="@string/activity_title_user_list"></activity>
+        <activity
+            android:name=".bidfeature.view.activity.BidDetailsActivity"
+            android:label="@string/activity_title_user_details"></activity>
+
+        <meta-data android:name="DATABASE" android:value="xover.db" />
+        <meta-data android:name="VERSION" android:value="1" />
+        <meta-data android:name="QUERY_LOG" android:value="true" />
+        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.rowland.auction" />
     </application>
 
 </manifest>

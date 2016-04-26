@@ -1,19 +1,38 @@
 package com.rowland.auction.presentation.bidfeature.model;
 
-/**
- * Class that represents a user in the presentation layer.
- */
-public class BidModel {
+import com.orm.SugarRecord;
 
-  private final int bidModelId;
+/**
+ * Class that represents a bid in the presentation layer.
+ */
+
+public class BidModel extends SugarRecord {
+
+  public static final String TABLE_NAME = "bid_table";
+
+  public interface Columns {
+    public static final String ID = "bid_id";
+    public static final String TITLE = "bid_title";
+    public static final String CREATED_AT = "bid_created_at";
+    public static final String UPDATED_AT = "bid_updated_at";
+    public static final String DESCRIPTION = "bid_description";
+    public static final String STATUS = "bid_status";
+  }
+
+
+  int bidModelId;
+
+  String title;
+  String description;
+  boolean status;
+
+  public BidModel() {
+
+  }
 
   public BidModel(int bidModelId) {
     this.bidModelId = bidModelId;
   }
-
-  private String title;
-  private String description;
-  private String status;
 
   public int getBidModelId() {
     return bidModelId;
@@ -35,11 +54,11 @@ public class BidModel {
     return description;
   }
 
-  public void setStatus(String status) {
+  public void setStatus(boolean status) {
     this.status = status;
   }
 
-  public String getStatus() {
+  public boolean getStatus() {
     return status;
   }
 
